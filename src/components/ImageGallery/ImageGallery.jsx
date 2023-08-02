@@ -1,11 +1,12 @@
-import { Component } from "react";
+import React from 'react';
 import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
 import styled from './ImageGallery.module.css';
 import PropTypes from "prop-types";
 
-export class ImageGallery extends Component {
-  render() {
-    const { images } = this.props;
+export const ImageGallery = ({images}) => {
+  if (!Array.isArray(images)) {
+    return <div>No images to display.</div>;
+  }
     return (
       <>
         <ul className={styled.ImageGallery}>
@@ -15,8 +16,8 @@ export class ImageGallery extends Component {
         </ul>
       </>
     );
-  }
 }
+  
 ImageGallery.propTypes = {
   images: PropTypes.arrayOf(
     PropTypes.shape({
